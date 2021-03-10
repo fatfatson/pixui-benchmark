@@ -8,7 +8,7 @@ master:
           latest: true
           groupAsDomain: false
       wework:
-        title: 挂件 ${ORANGE_BRANCH} 分支部署
+        title: pixui-benchmark发布
         notify:
           - alsotang
           - gisonyang
