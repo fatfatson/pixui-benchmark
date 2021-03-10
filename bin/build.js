@@ -20,8 +20,12 @@ glob(pathlib.join(projectRoot, "cases/**/*.{js,html}"), {}, function (er, files)
     const targetDir  = pathlib.dirname(target)
     mkdirp.sync(targetDir)
 
-    const pfbsPath = pathlib.join(projectRoot, 'bin', 'pfbs')
+    const pfbsPlatformName = {
+      'darwin': 'pfbs',
+      'linux': 'pfbs-linux',
+    }[process.platform];
+    const pfbsPath = pathlib.join(projectRoot, 'bin', pfbsPlatformName)
 
-    child_process.exec(`${pfbsPath} ${jsArgs} --src ${filename} --out ${target}`);
+    child_process.execSync(`${pfbsPath} ${jsArgs} --src ${filename} --out ${target}`);
   })
 })
