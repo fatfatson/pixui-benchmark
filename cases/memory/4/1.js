@@ -42,7 +42,14 @@ function genFragment() {
   return $container;
 }
 
+let startTime = 0;
 function runTimer(cb, time) {
+  if (startTime && Date.now() - startTime >= 60000 * 3 ) {
+    return;
+  } else if (!startTime) {
+    startTime = Date.now()
+  }
+
   let timer = setTimeout(() => {
     cb();
 
