@@ -1,0 +1,9 @@
+master:
+  push:
+    - stages:
+      - name: 发布页面到cdn
+        type: cdn:go
+        options:
+          dist: cases/
+          latest: true
+          groupAsDomain: false
