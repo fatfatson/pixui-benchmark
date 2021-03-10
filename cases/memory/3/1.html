@@ -1,0 +1,38 @@
+<!-- 内存 - 3.不同标签 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内存 - 3.不同标签</title>
+  <style>
+    .container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background-color: blue;
+      overflow: scroll;
+    }
+
+    .wrap {
+      width: 400px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .nowrap {
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      white-space: nowrap;
+      line-clamp: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container" type="1"></div>
+  <script src="1.js">
+  </script>
+</body>
+</html>

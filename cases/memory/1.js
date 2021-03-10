@@ -1,3 +1,6 @@
+window.moveTo(100, 100);
+window.resizeTo(400, 400);
+
 // 启动延时(ms) delay=2000
 let delayResult = location.search.match(/delay=([^=&]+)/);
 let delay = parseInt((delayResult && delayResult[1]) || 2000, 10);

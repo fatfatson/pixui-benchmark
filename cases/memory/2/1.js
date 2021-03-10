@@ -6,8 +6,8 @@ let delayResult = location.search.match(/delay=([^=&]+)/);
 let delay = parseInt((delayResult && delayResult[1]) || 2000, 10);
 
 // 用例类型 type=1
-let typeResult = location.search.match(/type=([^=&]+)/);
-let type = parseInt((typeResult && typeResult[1]) || 1, 10);
+let typeResult = document.getElementById('app').getAttribute('type');
+let type = parseInt(typeResult || 1, 10);
 
 setTimeout(() => {
   let startTime = Date.now();
