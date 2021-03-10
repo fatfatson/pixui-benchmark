@@ -1,7 +1,7 @@
 master:
   push:
     - docker:
-      image: csighub.tencentyun.com/alsotang/pixui_compile:v4
+        image: csighub.tencentyun.com/alsotang/pixui_compile:v4
       stages:
         - name: node 版本
           script: node -v
