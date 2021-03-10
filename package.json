@@ -1,0 +1,21 @@
+{
+  "name": "pixui-benchmark",
+  "version": "1.0.0",
+  "description": "PixUI 性能基准用例仓库",
+  "main": "index.js",
+  "bin": {
+    "pixui-benchmark": "dev_server.js"
+  },
+  "scripts": {
+    "dev": "node bin/dev_server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.code.oa.com/WGFE/pixui-benchmark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
