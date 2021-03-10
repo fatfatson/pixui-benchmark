@@ -7,7 +7,8 @@
     "pixui-benchmark": "dev_server.js"
   },
   "scripts": {
-    "dev": "node bin/dev_server.js"
+    "dev": "node bin/dev_server.js",
+    "build": "node bin/build.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "glob": "^7.1.6",
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.2"
   }
 }

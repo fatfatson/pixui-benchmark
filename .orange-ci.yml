@@ -1,12 +1,16 @@
 master:
   push:
-    - stages:
-      - name: 发布页面到cdn
-        type: cdn:go
-        options:
-          dist: cases/
-          latest: true
-          groupAsDomain: false
+    - docker:
+      image: csighub.tencentyun.com/alsotang/pixui_compile:v4
+      stages:
+        - name: pfbs转换
+          script: npm run build
+        - name: 发布页面到cdn
+          type: cdn:go
+          options:
+            dist: dist/cases
+            latest: true
+            groupAsDomain: false
       wework:
         title: pixui-benchmark发布
         notify:
