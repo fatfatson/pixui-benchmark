@@ -6,5 +6,5 @@
 
 ## 内存
 
-**1. DOM同级数量：**
-1.1. 100个 无样式div
+### 1. DOM同级数量：
+- 100个 无样式div：https://{cdn-go}/memory/1.html
