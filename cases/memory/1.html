@@ -22,10 +22,17 @@
       height: 100px;
       background-color: red;
     }
+
+    .container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app" class="container"></div>
   <script>
     // 启动延时(ms) delay=2000
     let delayResult = location.search.match(/delay=([^=&]+)/);
@@ -40,6 +47,7 @@
       console.log('begin')
       run();
       console.log('end:', Date.now() - startTime);
+      document.getElementById('app').style.backgroundColor = 'green';
     }, delay);
 
     function run() {
