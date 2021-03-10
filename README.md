@@ -11,9 +11,26 @@
 ## 内存
 
 ### 1. DOM同级数量：
-- 100个 无样式div：https://{cdn-go}/memory/1.html?type=1
-- 10000个 无样式div：https://{cdn-go}/memory/1.html?type=2
-- 100个 宽高100*100 透明 div：https://{cdn-go}/memory/1.html?type=3
-- 10000个 宽高100*100 透明 div：https://{cdn-go}/memory/1.html?type=4
-- 100个 宽高100*100 背景色 div：https://{cdn-go}/memory/1.html?type=5
-- 10000个 宽高100*100 背景色 div：https://{cdn-go}/memory/1.html?type=6
+- 100个 无样式div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/1.html?type=1
+- 10000个 无样式div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/1.html?type=2
+- 100个 宽高100*100 透明 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/1.html?type=3
+- 10000个 宽高100*100 透明 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/1.html?type=4
+- 100个 宽高100*100 背景色 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/1.html?type=5
+- 10000个 宽高100*100 背景色 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/1.html?type=6
+
+### 2. DOM嵌套深度：
+- 100个 无样式div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/2.html?type=1
+- 10000个 无样式div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/2.html?type=2
+- 100个 宽高100*100 透明 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/2.html?type=3
+- 10000个 宽高100*100 透明 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/2.html?type=4
+- 100个 宽高100*100 背景色 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/2.html?type=5
+- 10000个 宽高100*100 背景色 div： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/2.html?type=6
+
+### 3. 不同标签：
+- div 带文字 * 1000字（不换行）： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/3.html?type=1
+- text 带文字 * 1000字（不换行）： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/3.html?type=2
+- text 带文字 * 1000字（自动换行）： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/3.html?type=3
+- div 带文字 * 10000字（不换行）： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/3.html?type=4
+- text 带文字 * 10000字（不换行）： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/3.html?type=5
+- text 带文字 * 10000字（自动换行）： https://cdn-go.cn/WGFE/pixui-benchmark/latest/memory/3.html?type=6
+
