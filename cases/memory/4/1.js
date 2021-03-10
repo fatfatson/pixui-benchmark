@@ -3,7 +3,7 @@ window.resizeTo(400, 400);
 
 // 启动延时(ms) delay=2000
 let delayResult = location.search.match(/delay=([^=&]+)/);
-let delay = parseInt((delayResult && delayResult[1]) || 2000, 10);
+let delay = parseInt((delayResult && delayResult[1]) || 0, 10);
 
 // 用例类型 type=1
 let typeResult = document.getElementById('app').getAttribute('type');
@@ -61,10 +61,12 @@ function run() {
     $app.appendChild($container);
     let isShow = true;
 
-    runTimer(() => {
-      $container.style.display = isShow ? 'none' : 'flex';
-      isShow = !isShow;
-    }, 100)
+    setTimeout(() => {
+      runTimer(() => {
+        $container.style.display = isShow ? 'none' : 'flex';
+        isShow = !isShow;
+      }, 100)
+    }, 10000);
   }
 
   /* 100个div+text，add/remove 每0.1s自动隐藏展开 */
@@ -73,17 +75,19 @@ function run() {
     $app.appendChild($container);
     let isShow = true;
 
-    runTimer(() => {
-      if (isShow) {
-        $app.removeChild($container);
-        $container = null;
-      } else {
-        $container = genFragment();
-        $app.appendChild($container);
-      }
+    setTimeout(() => {
+      runTimer(() => {
+        if (isShow) {
+          $app.removeChild($container);
+          $container = null;
+        } else {
+          $container = genFragment();
+          $app.appendChild($container);
+        }
 
-      isShow = !isShow;
-    }, 100)
+        isShow = !isShow;
+      }, 100)
+    }, 10000);
   }
 
   /* 100个div+text，display 每7s自动隐藏展开 */
@@ -91,11 +95,12 @@ function run() {
     let $container = genFragment();
     $app.appendChild($container);
     let isShow = true;
-
-    runTimer(() => {
-      $container.style.display = isShow ? 'none' : 'flex';
-      isShow = !isShow;
-    }, 7000)
+    setTimeout(() => {
+      runTimer(() => {
+        $container.style.display = isShow ? 'none' : 'flex';
+        isShow = !isShow;
+      }, 7000)
+    }, 10000);
   }
 
   /* 100个div+text，add/remove 每7s自动隐藏展开 */
@@ -104,17 +109,19 @@ function run() {
     $app.appendChild($container);
     let isShow = true;
 
-    runTimer(() => {
-      if (isShow) {
-        $app.removeChild($container);
-        $container = null;
-      } else {
-        $container = genFragment();
-        $app.appendChild($container);
-      }
-
-      isShow = !isShow;
-    }, 7000)
+    setTimeout(() => {
+      runTimer(() => {
+        if (isShow) {
+          $app.removeChild($container);
+          $container = null;
+        } else {
+          $container = genFragment();
+          $app.appendChild($container);
+        }
+  
+        isShow = !isShow;
+      }, 7000)
+    }, 10000);
   }
 
 }

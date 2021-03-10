@@ -3,7 +3,7 @@ window.resizeTo(400, 400);
 
 // 启动延时(ms) delay=2000
 let delayResult = location.search.match(/delay=([^=&]+)/);
-let delay = parseInt((delayResult && delayResult[1]) || 2000, 10);
+let delay = parseInt((delayResult && delayResult[1]) || 0, 10);
 
 // 用例类型 type=1
 let typeResult = document.getElementById('app').getAttribute('type');

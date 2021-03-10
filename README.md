@@ -1,10 +1,6 @@
 # 用例
 用例表格：https://docs.qq.com/sheet/DRXhuQVRYWk95a3hP?tab=h17h2i
 
-## 用例通用参数
-`delay`: 用例执行延时(ms)，默认值 2000。
-`type`: 用例 testcase type，默认值 1。
-
 ## 帧率
 
 
