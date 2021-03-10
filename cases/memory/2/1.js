@@ -11,7 +11,7 @@ let type = parseInt(typeResult || 1, 10);
 
 setTimeout(() => {
   let startTime = Date.now();
-  console.log('begin')
+  console.log('begin, type: ', type)
   run();
   console.log('end:', Date.now() - startTime);
   document.getElementById('app').style.backgroundColor = 'green';
