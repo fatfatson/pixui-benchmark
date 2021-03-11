@@ -1,3 +1,5 @@
+const { genText } = require('@/lib/helper')
+
 function genFragment() {
   let $container = document.createElement('div');
   $container.className = 'wrap';
