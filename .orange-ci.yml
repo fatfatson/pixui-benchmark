@@ -9,7 +9,7 @@ master:
           script: npm install @tencent/tnpm -g --registry=http://r.tnpm.oa.com --verbose
         - name: 安装依赖
           script: tnpm i
-        - name: pfbs 转换
+        - name: 构建 && pfbs 转换
           script: npm run build
         - name: 发布页面到 cdn
           type: cdn:go
