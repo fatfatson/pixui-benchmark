@@ -5,7 +5,8 @@ const rimraf = require('rimraf')
 const fs = require('fs')
 const esbuild = require('esbuild')
 const os = require('os')
-
+const child_process = require('child_process')
+const getStream = require('get-stream');
 
 const projectRoot = pathlib.join(__dirname, '..')
 const srcDir = pathlib.join(projectRoot, 'src')
@@ -15,19 +16,25 @@ rimraf.sync(distDir)
 const entryJsTemplate = fs.readFileSync(pathlib.join(projectRoot, 'src/entry.js')).toString()
 const layoutTemplate = fs.readFileSync(pathlib.join(projectRoot, 'src/layout.html')).toString()
 
-// 所有用例
-const benchmarkCaseFiles = glob.sync(`${projectRoot}/src/cases/**/*.case.js`)
+async function main() {
+  // 所有用例
+  const benchmarkCaseFiles = glob.sync(`${projectRoot}/src/cases/**/*.case.js`)
 
-benchmarkCaseFiles.forEach(benchmarkCaseFile => {
-  const html = compileCaseToBundleHtml(benchmarkCaseFile)
+  for (const benchmarkCaseFile of benchmarkCaseFiles) {
+    const html = compileCaseToBundleHtml(benchmarkCaseFile)
 
-  const relativePath = pathlib.relative(srcDir, benchmarkCaseFile)
-  const htmlTarget = pathlib.join(distDir, relativePath).replace(/\.js$/, '.html');
-  const htmlTargetDir = pathlib.dirname(htmlTarget);
-  mkdirp.sync(htmlTargetDir)
+    const relativePath = pathlib.relative(srcDir, benchmarkCaseFile)
+    const htmlTarget = pathlib.join(distDir, relativePath).replace(/\.js$/, '.html');
+    const htmlTargetDir = pathlib.dirname(htmlTarget);
+    mkdirp.sync(htmlTargetDir)
 
-  fs.writeFileSync(htmlTarget, html)
-})
+    const fbsHtml = await pfbsCompile(html)
+
+    fs.writeFileSync(htmlTarget, fbsHtml, 'binary')
+  }
+}
+main()
+
 
 // 根据入口文件，生成单一html入口
 function compileCaseToBundleHtml(benchmarkCaseFile) {
@@ -58,4 +65,25 @@ function compileCaseToBundleHtml(benchmarkCaseFile) {
   // END 生成html文件
 
   return bundleHtml
+}
+
+function genBinPath(binName) {
+  return pathlib.join(__dirname, 'pfbs', binName);
+}
+
+async function pfbsCompile(fileContent) {
+  const binPath = {
+    'darwin': genBinPath('pfbs'),
+    'linux': genBinPath('pfbs-linux'),
+  }[process.platform];
+
+  const child = child_process.spawn(binPath, ['--src', 'stdin']);
+  child.stdin.write(fileContent);
+  child.stdin.end();
+
+  const fbsContent = await getStream(child.stdout, {
+    encoding: 'binary'
+  });
+
+  return fbsContent
 }
