@@ -1,3 +1,5 @@
+const helper = require('@/lib/helper')
+
 exports.benchmark = {
   name: ``,
   description: ``,

@@ -8,6 +8,13 @@ const os = require('os')
 const child_process = require('child_process')
 const getStream = require('get-stream');
 
+const moduleAlias = require('module-alias')
+
+// Or multiple aliases
+moduleAlias.addAliases({
+  '@': pathlib.join(__dirname, '..', 'src'),
+})
+
 const projectRoot = pathlib.join(__dirname, '..')
 const srcDir = pathlib.join(projectRoot, 'src')
 const distDir = pathlib.join(projectRoot, 'dist')
@@ -33,7 +40,9 @@ async function main() {
     fs.writeFileSync(htmlTarget, fbsHtml, 'binary')
   }
 }
-main()
+if (!module.parent) {
+  main()
+}
 
 
 // 根据入口文件，生成单一html入口
@@ -50,7 +59,8 @@ function compileCaseToBundleHtml(benchmarkCaseFile) {
     stdin: {
       contents: entryWithBenchmarkContent,
       resolveDir: srcDir,
-    }
+    },
+    tsconfig: pathlib.join(projectRoot, 'jsconfig.json')
   })
   const jsBundle = fs.readFileSync(tempJsTarget).toString();
   fs.unlinkSync(tempJsTarget);
