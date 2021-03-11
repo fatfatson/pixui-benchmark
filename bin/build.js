@@ -4,6 +4,7 @@ const mkdirp = require('mkdirp')
 const rimraf = require('rimraf')
 const fs = require('fs')
 const esbuild = require('esbuild')
+const os = require('os')
 
 
 const projectRoot = pathlib.join(__dirname, '..')
@@ -18,10 +19,19 @@ const layoutTemplate = fs.readFileSync(pathlib.join(projectRoot, 'src/layout.htm
 const benchmarkCaseFiles = glob.sync(`${projectRoot}/src/cases/**/*.case.js`)
 
 benchmarkCaseFiles.forEach(benchmarkCaseFile => {
+  const html = compileCaseToBundleHtml(benchmarkCaseFile)
+
   const relativePath = pathlib.relative(srcDir, benchmarkCaseFile)
-  const target = pathlib.join(distDir, relativePath);
-  const targetDir = pathlib.dirname(target)
-  mkdirp.sync(targetDir)
+  const htmlTarget = pathlib.join(distDir, relativePath).replace(/\.js$/, '.html');
+  const htmlTargetDir = pathlib.dirname(htmlTarget);
+  mkdirp.sync(htmlTargetDir)
+
+  fs.writeFileSync(htmlTarget, html)
+})
+
+// 根据入口文件，生成单一html入口
+function compileCaseToBundleHtml(benchmarkCaseFile) {
+  const tempJsTarget = pathlib.join(os.tmpdir(), pathlib.basename(benchmarkCaseFile));
 
   const { benchmark } = require(benchmarkCaseFile)
 
@@ -29,21 +39,23 @@ benchmarkCaseFiles.forEach(benchmarkCaseFile => {
   const entryWithBenchmarkContent = entryJsTemplate.replace(`{{{benchmark_case}}}`, './' + pathlib.relative(srcDir, benchmarkCaseFile))
   esbuild.buildSync({
     bundle: true,
-    outfile: target,
+    outfile: tempJsTarget,
     stdin: {
       contents: entryWithBenchmarkContent,
       resolveDir: srcDir,
     }
   })
+  const jsBundle = fs.readFileSync(tempJsTarget).toString();
+  fs.unlinkSync(tempJsTarget);
   // END 生成js文件
 
   // 生成html文件
-  const caseHtml = layoutTemplate
+  const bundleHtml = layoutTemplate
     .replace(`{{{benchmark_html}}}`, benchmark.html)
     .replace(`{{{benchmark_style}}}`, benchmark.style)
-    .replace(`{{{benchmark_js}}}`, pathlib.basename(benchmarkCaseFile))
+    .replace(`{{{benchmark_js}}}`, jsBundle)
 
-  const htmlfilename = target.replace(/\.js$/, '.html')
-  fs.writeFileSync(htmlfilename, caseHtml)
   // END 生成html文件
-})
+
+  return bundleHtml
+}
