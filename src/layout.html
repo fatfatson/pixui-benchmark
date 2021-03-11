@@ -6,10 +6,51 @@
   <title>Document</title>
 </head>
 <style>
+  .box_transparent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+  }
+  .box_color {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+
+  .container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+  }
+
+  .wrap {
+    width: 400px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .nowrap {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-clamp: 1;
+  }
+
+
   {{{benchmark_style}}}
 </style>
 <body>
-  {{{benchmark_html}}}
+  <div id="app" class="container">
+    {{{benchmark_html}}}
+  </div>
+
 </body>
 
 <script>

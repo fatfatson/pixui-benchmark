@@ -30,7 +30,7 @@ app.get('*', async (req, res, next) => {
 
   const isPixUI = /PixUI/.test(ua);
 
-  const relatedJs = pahtlib.join(__dirname, '../src', reqPathname).replace(/.html$/, '.js');
+  const relatedJs = pahtlib.join(__dirname, '../src/cases/', reqPathname).replace(/.html$/, '.case.js');
   const htmlContent = compileCaseToBundleHtml(relatedJs);
   if (isPixUI) {
     const fbsContent = await pfbsCompile(htmlContent);

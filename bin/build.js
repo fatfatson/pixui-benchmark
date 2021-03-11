@@ -15,6 +15,11 @@ moduleAlias.addAliases({
   '@': pathlib.join(__dirname, '..', 'src'),
 })
 
+function requireUncached(module) {
+  delete require.cache[require.resolve(module)];
+  return require(module);
+}
+
 const projectRoot = pathlib.join(__dirname, '..')
 const srcDir = pathlib.join(projectRoot, 'src')
 const distDir = pathlib.join(projectRoot, 'dist')
@@ -49,7 +54,7 @@ if (!module.parent) {
 function compileCaseToBundleHtml(benchmarkCaseFile) {
   const tempJsTarget = pathlib.join(os.tmpdir(), pathlib.basename(benchmarkCaseFile));
 
-  const { benchmark } = require(benchmarkCaseFile)
+  const { benchmark } = requireUncached(benchmarkCaseFile)
 
   // 生成js文件
   const entryWithBenchmarkContent = entryJsTemplate.replace(`{{{benchmark_case}}}`, './' + pathlib.relative(srcDir, benchmarkCaseFile))
@@ -68,8 +73,8 @@ function compileCaseToBundleHtml(benchmarkCaseFile) {
 
   // 生成html文件
   const bundleHtml = layoutTemplate
-    .replace(`{{{benchmark_html}}}`, benchmark.html)
-    .replace(`{{{benchmark_style}}}`, benchmark.style)
+    .replace(`{{{benchmark_html}}}`, benchmark.html || '')
+    .replace(`{{{benchmark_style}}}`, benchmark.style  || '')
     .replace(`{{{benchmark_js}}}`, jsBundle)
 
   // END 生成html文件
