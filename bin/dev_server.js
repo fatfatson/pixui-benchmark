@@ -1,25 +1,25 @@
 const express = require('express')
 const fs = require('fs')
-const pathLib = require('path')
-const child_process = require('child_process');
+const pahtlib = require('path')
+const { compileCaseToBundleHtml, pfbsCompile } = require('./build')
 
 
 const app = express();
-const publicDir = pathLib.join(__dirname, '../cases')
+const publicDir = pahtlib.join(__dirname, '../cases')
+
+// 免得报错
+app.get('/favicon.ico', function (req, res) {
+  res.send();
+})
 
 //拦截输出，当agent为PixUI时，转换为fbs二进制数据再返回
-app.use((req, res, next) => {
+app.get('*', async (req, res, next) => {
   let reqPathname = req.path
-
-  if (reqPathname === '/favicon.ico') {
-    res.send();
-    return;
-  }
 
   console.log(`request ${reqPathname}`)
   const ua = req.get('User-Agent');
 
-  const ext = pathLib.extname(reqPathname)
+  const ext = pahtlib.extname(reqPathname)
   const extToContentType = {
     '.html': 'text/html',
     '.js': 'application/javascript',
@@ -29,25 +29,14 @@ app.use((req, res, next) => {
   res.set('content-type', extToContentType[ext])
 
   const isPixUI = /PixUI/.test(ua);
-  const isJs = ext === '.js'
-  const fileContent = fs.readFileSync(pathLib.join(publicDir, reqPathname));
 
+  const relatedJs = pahtlib.join(__dirname, '../src', reqPathname).replace(/.html$/, '.js');
+  const htmlContent = compileCaseToBundleHtml(relatedJs);
   if (isPixUI) {
-		const opts = isJs ? ['--js'] : [];
-    const child = child_process.spawn(pathLib.join(__dirname, './pfbs'), ['--src', 'stdin', ...opts]);
-    const lbuffers = [];
-
-    child.stdout.on('data', (data) => {
-      lbuffers.push(data);
-    });
-    child.stdout.on('close', () => {
-      const lbuffer = Buffer.concat(lbuffers);
-      res.send(lbuffer)
-    });
-    child.stdin.write(fileContent);
-    child.stdin.end();
+    const fbsContent = await pfbsCompile(htmlContent);
+    res.send(fbsContent)
   } else {
-    res.send(fileContent)
+    res.send(htmlContent)
   }
 });
 

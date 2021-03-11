@@ -66,6 +66,7 @@ function compileCaseToBundleHtml(benchmarkCaseFile) {
 
   return bundleHtml
 }
+exports.compileCaseToBundleHtml = compileCaseToBundleHtml;
 
 function genBinPath(binName) {
   return pathlib.join(__dirname, 'pfbs', binName);
@@ -81,9 +82,8 @@ async function pfbsCompile(fileContent) {
   child.stdin.write(fileContent);
   child.stdin.end();
 
-  const fbsContent = await getStream(child.stdout, {
-    encoding: 'binary'
-  });
+  const fbsContent = await getStream.buffer(child.stdout);
 
   return fbsContent
 }
+exports.pfbsCompile = pfbsCompile;
