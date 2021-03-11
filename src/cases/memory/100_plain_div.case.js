@@ -6,8 +6,10 @@ exports.benchmark = {
     background-color: red;
   }
   `,
-  html: `html1`,
+  html: `
+  <div class="a">html1</div>
+  `,
   run() {
-    console.log(1111)
+    document.querySelector('.a').innerText = 'html 2'
   },
 }

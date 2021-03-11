@@ -18,7 +18,7 @@ const layoutTemplate = fs.readFileSync(pathlib.join(projectRoot, 'src/layout.htm
 const benchmarkCaseFiles = glob.sync(`${projectRoot}/src/cases/**/*.case.js`)
 
 benchmarkCaseFiles.forEach(benchmarkCaseFile => {
-  const relativePath = pathlib.relative(projectRoot, benchmarkCaseFile)
+  const relativePath = pathlib.relative(srcDir, benchmarkCaseFile)
   const target = pathlib.join(distDir, relativePath);
   const targetDir = pathlib.dirname(target)
   mkdirp.sync(targetDir)
