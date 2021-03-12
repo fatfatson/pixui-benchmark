@@ -19,6 +19,7 @@ app.get('*', async (req, res, next) => {
   console.log(`request ${reqPathname}`)
   const ua = req.get('User-Agent');
 
+
   const ext = pahtlib.extname(reqPathname)
   const extToContentType = {
     '.html': 'text/html',
@@ -26,11 +27,18 @@ app.get('*', async (req, res, next) => {
     '.css': 'text/css'
   }
 
-  res.set('content-type', extToContentType[ext])
+  res.set('content-type', extToContentType[ext] || 'text/plain')
+
 
   const isPixUI = /PixUI/.test(ua);
 
   const relatedJs = pahtlib.join(__dirname, '../src/cases/', reqPathname).replace(/.html$/, '.case.js');
+
+
+  if (fs.statSync(relatedJs)?.isDirectory()) {
+    return res.send('not found')
+  }
+
   const htmlContent = compileCaseToBundleHtml(relatedJs);
   if (isPixUI) {
     const fbsContent = await pfbsCompile(htmlContent);
