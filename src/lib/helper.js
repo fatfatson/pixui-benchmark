@@ -13,8 +13,8 @@ exports.genText = genText;
 
 
 let startTime = 0;
-function runTimer(cb, time) {
-  if (startTime && Date.now() - startTime >= 60000 * 3 ) {
+function runTimer(cb, time, needAutoStop = true) {
+  if (startTime && Date.now() - startTime >= 60000 * 3 && needAutoStop) {
     return;
   } else if (!startTime) {
     startTime = Date.now()
