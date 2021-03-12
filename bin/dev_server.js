@@ -14,9 +14,9 @@ app.get('/favicon.ico', function (req, res) {
 
 //拦截输出，当agent为PixUI时，转换为fbs二进制数据再返回
 app.get('*', async (req, res, next) => {
-  let reqPathname = req.path
+  console.log(`request ${req.url}`)
 
-  console.log(`request ${reqPathname}`)
+  const reqPathname = req.path
   const ua = req.get('User-Agent');
 
   const ext = pahtlib.extname(reqPathname)
@@ -26,11 +26,18 @@ app.get('*', async (req, res, next) => {
     '.css': 'text/css'
   }
 
-  res.set('content-type', extToContentType[ext])
+  res.set('content-type', extToContentType[ext] || 'text/plain')
+
 
   const isPixUI = /PixUI/.test(ua);
 
   const relatedJs = pahtlib.join(__dirname, '../src/cases/', reqPathname).replace(/.html$/, '.case.js');
+
+
+  if (!fs.existsSync(relatedJs) || fs.statSync(relatedJs).isDirectory()) {
+    return res.send('not found')
+  }
+
   const htmlContent = compileCaseToBundleHtml(relatedJs);
   if (isPixUI) {
     const fbsContent = await pfbsCompile(htmlContent);
