@@ -1,11 +1,12 @@
+require('../module_alias')
+
 const express = require('express')
 const fs = require('fs')
 const pahtlib = require('path')
-const { compileCaseToBundleHtml, pfbsCompile } = require('./build')
+const { compileCaseToBundleHtml, pfbsCompile } = require('@/lib/compile')
 
 
 const app = express();
-const publicDir = pahtlib.join(__dirname, '../cases')
 
 // 免得报错
 app.get('/favicon.ico', function (req, res) {
