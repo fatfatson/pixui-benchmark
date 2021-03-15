@@ -4,6 +4,7 @@ const child_process = require('child_process')
 const getStream = require('get-stream');
 const fs = require('fs')
 const pathlib = require('path')
+const pfbs = require('@tencent/pfbs')
 
 const projectRoot = pathlib.join(__dirname, '..', '..')
 exports.projectRoot = projectRoot;
@@ -56,17 +57,6 @@ function genBinPath(binName) {
 }
 
 async function pfbsCompile(fileContent) {
-  const binPath = {
-    'darwin': genBinPath('pfbs'),
-    'linux': genBinPath('pfbs-linux'),
-  }[process.platform];
-
-  const child = child_process.spawn(binPath, ['--src', 'stdin']);
-  child.stdin.write(fileContent);
-  child.stdin.end();
-
-  const fbsContent = await getStream.buffer(child.stdout);
-
-  return fbsContent
+  return pfbs(fileContent)
 }
 exports.pfbsCompile = pfbsCompile;
