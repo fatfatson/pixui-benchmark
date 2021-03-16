@@ -1,4 +1,4 @@
-const { runTimer, genFragment } = require('./helper')
+const { runTimer, genFragment } = require('@/lib/helper')
 
 
 exports.benchmark = {
