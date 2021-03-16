@@ -9,7 +9,7 @@ exports.benchmark = {
   run() {
     const $app = document.getElementById('app');
 
-    /* div 带文字 * 10000字（不换行） */
+    /* div 带文字 * 4000字（不换行） */
     let $div = document.createElement('div');
     $div.className = 'nowrap';
     let $textnode = document.createTextNode(helper.genText(4000));

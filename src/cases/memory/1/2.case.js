@@ -9,8 +9,8 @@ exports.benchmark = {
   run() {
     const $app = document.getElementById('app');
 
-    /* 10000个 无样式div */
-    for (let i = 0; i < 10000; i++) {
+    /* 1000个 无样式div */
+    for (let i = 0; i < 1000; i++) {
       $app.appendChild(document.createElement('div'));
     }
   },

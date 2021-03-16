@@ -14,7 +14,7 @@ exports.genText = genText;
 
 let startTime = 0;
 function runTimer(cb, time, needAutoStop = true) {
-  if (startTime && Date.now() - startTime >= 60000 * 3 && needAutoStop) {
+  if (startTime && Date.now() - startTime >= 60000 * 4 && needAutoStop) {
     return;
   } else if (!startTime) {
     startTime = Date.now()
