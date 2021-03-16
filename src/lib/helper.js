@@ -13,8 +13,8 @@ exports.genText = genText;
 
 
 let startTime = 0;
-function runTimer(cb, time, needAutoStop = true) {
-  if (startTime && Date.now() - startTime >= 60000 * 4 && needAutoStop) {
+function runTimer(cb, time, isInfinity = true) {
+  if (!isInfinity && startTime && (Date.now() - startTime >= 60000 * 4)) {
     return;
   } else if (!startTime) {
     startTime = Date.now()
@@ -23,7 +23,7 @@ function runTimer(cb, time, needAutoStop = true) {
   let timer = setTimeout(() => {
     cb(() => clearTimeout(timer));
 
-    runTimer(cb, time);
+    runTimer(cb, time, isInfinity);
   }, time);
 
   return () => clearTimeout(timer);

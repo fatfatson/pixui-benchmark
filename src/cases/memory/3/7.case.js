@@ -23,6 +23,6 @@ exports.benchmark = {
 
     helper.runTimer(() => {
       $textnode.data = Math.random() + text;
-    }, 16, false)
+    }, 16, true)
   },
 }
