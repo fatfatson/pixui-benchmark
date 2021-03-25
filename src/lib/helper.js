@@ -11,6 +11,22 @@ function genText(length = 0) {
 }
 exports.genText = genText;
 
+function getRandomChinese(){ 
+  //生成随机汉字
+  return String.fromCodePoint(Math.round(Math.random() * 20901) + 19968)
+}
+
+function genChinese(length = 0) {
+  let text = '';
+
+  for (let i = 0; i < length; i++) {
+    text += getRandomChinese();
+  }
+
+  return text;
+}
+exports.genChinese = genChinese
+
 
 let startTime = 0;
 function runTimer(cb, time, isInfinity = true) {
