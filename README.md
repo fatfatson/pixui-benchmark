@@ -1,3 +1,13 @@
+# 开发阶段
+
+1. `$ npm run dev` 启动服务
+2. 添加更多用例
+3. 访问注入 `http://localhost:8083/fps/2/0.html` 的地址
+
+# 打包
+
+不需要手动打包，push master 之后会自动发布到 `cdn-go`
+
 # 用例
 
 ## 内存
