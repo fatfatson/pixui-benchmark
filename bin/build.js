@@ -22,7 +22,7 @@ async function main() {
     const html = compileCaseToBundleHtml(benchmarkCaseFile)
 
     const relativePath = pathlib.relative(srcDir, benchmarkCaseFile)
-    const htmlTarget = pathlib.join(distDir, relativePath).replace(/\.js$/, '.html');
+    const htmlTarget = pathlib.join(distDir, relativePath).replace(/\.case\.js$/, '.html');
     const htmlTargetDir = pathlib.dirname(htmlTarget);
     mkdirp.sync(htmlTargetDir)
 
