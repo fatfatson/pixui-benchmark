@@ -43,15 +43,10 @@ app.get('*', async (req, res, next) => {
 
   const htmlContent = compileCaseToBundleHtml(relatedJs);
   if (isPixUI) {
-    let pfbsVersion = '3.0';
+    let pfbsVersion = '';
     if (pixuiVersion) {
       const minorVersion = parseInt(pixuiVersion[2]);
-      if (minorVersion === 1 || minorVersion === 2) { // pixui 0.1.x 0.2.x
-        pfbsVersion = void 0
-      }
-      if (minorVersion === 3 || minorVersion === 4) { // pixui 0.3.x 0.4.x
-        pfbsVersion = '3.0'
-      }
+      pfbsVersion = `0.${minorVersion}`
     }
     const fbsContent = await pfbsCompile(htmlContent, { version: pfbsVersion });
     res.send(fbsContent)
