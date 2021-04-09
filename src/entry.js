@@ -10,7 +10,7 @@ const autoGc = (duration = 160) => {
   }
 };
 
-autoGc();
+// autoGc();
 
 window.moveTo(100, 100);
 window.resizeTo(400, 400);
