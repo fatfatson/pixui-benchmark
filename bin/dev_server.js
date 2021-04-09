@@ -4,6 +4,7 @@ const express = require('express')
 const fs = require('fs')
 const pahtlib = require('path')
 const { compileCaseToBundleHtml, pfbsCompile } = require('@/lib/compile')
+const os = require('os')
 
 
 const app = express();
@@ -31,6 +32,7 @@ app.get('*', async (req, res, next) => {
 
 
   const isPixUI = /PixUI/.test(ua);
+  const pixuiVersion = /(\d)\.(\d)\.(\d+)/.exec(ua);
 
   const relatedJs = pahtlib.join(__dirname, '../src/cases/', reqPathname).replace(/.html$/, '.case.js');
 
@@ -41,7 +43,12 @@ app.get('*', async (req, res, next) => {
 
   const htmlContent = compileCaseToBundleHtml(relatedJs);
   if (isPixUI) {
-    const fbsContent = await pfbsCompile(htmlContent);
+    let pfbsVersion = '';
+    if (pixuiVersion) {
+      const minorVersion = parseInt(pixuiVersion[2]);
+      pfbsVersion = `0.${minorVersion}`
+    }
+    const fbsContent = await pfbsCompile(htmlContent, { version: pfbsVersion });
     res.send(fbsContent)
   } else {
     res.send(htmlContent)
@@ -49,7 +56,28 @@ app.get('*', async (req, res, next) => {
 });
 
 
+function getAllAddress() {
+  const ifaces = os.networkInterfaces();
+
+  const addrs = []
+  if (ifaces) {
+    Object.keys(ifaces).forEach(function (dev) {
+      ifaces[dev].forEach(function (details) {
+        if (details.family === 'IPv4') {
+          addrs.push(details.address)
+          // console.info(('  ' + protocol + details.address + ':' + colors.green(port.toString())));
+        }
+      });
+    });
+  }
+
+  return addrs
+}
+
 const appPort = 8083
 app.listen(appPort, () => {
-  console.log(`app is listening at http://localhost:${appPort}/`)
+  console.log(`app is listening at:`)
+  getAllAddress().forEach(address => {
+    console.log(`http://${address}:${appPort}/`)
+  })
 })

@@ -52,11 +52,7 @@ function compileCaseToBundleHtml(benchmarkCaseFile) {
 }
 exports.compileCaseToBundleHtml = compileCaseToBundleHtml;
 
-function genBinPath(binName) {
-  return pathlib.join(__dirname, 'pfbs', binName);
-}
-
-async function pfbsCompile(fileContent) {
-  return pfbs(fileContent)
+async function pfbsCompile(fileContent, options) {
+  return pfbs(fileContent, options)
 }
 exports.pfbsCompile = pfbsCompile;
