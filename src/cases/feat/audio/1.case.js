@@ -9,37 +9,39 @@ exports.benchmark = {
   `,
   // html: ``,
   // html: `
-  //   <audio class="audio" src="http://10.43.42.88:8000/8169.ogg" autoplay="true" />
+  //   <audio class="audio" src="http://10.43.42.84:8000/8169.ogg" autoplay="true" />
   // `,
   // html: `
-  //   <audio class="audio" src="http://10.43.42.88:8000/8169.ogg" autoplay="true" loop="true" />
+  //   <audio class="audio" src="http://10.43.42.84:8000/8169.ogg" autoplay="true" loop="true" />
   // `,
   // html: `
-  //   <audio class="audio" src="http://10.43.42.88:8000/houlai.ogg" autoplay="true" />
+  //   <audio class="audio" src="http://10.43.42.84:8000/houlai.ogg" autoplay="true" />
+  // html: `
+  //   <audio class="audio" src="http://10.43.42.84:8000/houlai.ogg" autoplay="true" loop="true" />
+  // `,
   html: `
-    <audio class="audio" src="http://10.43.42.88:8000/houlai.ogg" autoplay="true" loop="true" />
   `,
   run() {
-    let count = 0;
-    const $audio = document.querySelector('.audio');
+    // let count = 0;
+    // const $audio = document.querySelector('.audio');
 
-    $audio.play();
-    $audio.addEventListener('ended', () => {
-      console.log('addEventListener audio ended')
-      count++;
+    // $audio.play();
+    // $audio.addEventListener('ended', () => {
+    //   console.log('addEventListener audio ended')
+    //   count++;
 
-      // if (count === 1) {
-      //   $audio.stop();
-      //   $audio.setAttribute('src', 'http://10.43.42.88:8000/mayday.ogg')
-      //   $audio.src = 'http://10.43.42.88:8000/mayday.ogg'
-      //   $audio.play();
-      // } else if (count === 2) {
-      //   $audio.stop();
-      //   $audio.setAttribute('src', 'http://10.43.42.88:8000/houlai.ogg')
-      //   $audio.src = 'http://10.43.42.88:8000/houlai.ogg'
-      //   $audio.play();
-      // }
-    })
+    //   // if (count === 1) {
+    //   //   $audio.stop();
+    //   //   $audio.setAttribute('src', 'http://10.43.42.84:8000/mayday.ogg')
+    //   //   $audio.src = 'http://10.43.42.84:8000/mayday.ogg'
+    //   //   $audio.play();
+    //   // } else if (count === 2) {
+    //   //   $audio.stop();
+    //   //   $audio.setAttribute('src', 'http://10.43.42.84:8000/houlai.ogg')
+    //   //   $audio.src = 'http://10.43.42.84:8000/houlai.ogg'
+    //   //   $audio.play();
+    //   // }
+    // })
     // $audio.onended = () => {
     //   console.log('audio onended')
     // }

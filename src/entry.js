@@ -12,13 +12,13 @@ const autoGc = (duration = 160) => {
 
 // autoGc();
 
-window.moveTo(100, 100);
-window.resizeTo(400, 400);
+// window.moveTo(100, 100);
+// window.resizeTo(400, 400);
 
 
 setTimeout(() => {
   let startTime = Date.now();
   benchmark.run()
   console.log('end:', Date.now() - startTime);
-  document.getElementById('app').style.backgroundColor = 'green';
+  // document.getElementById('app').style.backgroundColor = 'green';
 }, 2000);
