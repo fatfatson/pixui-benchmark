@@ -20,6 +20,7 @@ exports.benchmark = {
   html: `
     <div class="box">
       <div class="float_box"></box>
+      <input type="text" style="margin-top: 100px; width: 100px; height: 30px" placeholder="what" />
     </box>
   `,
   run() {
@@ -32,13 +33,18 @@ exports.benchmark = {
 
     childWindow.postMessage(JSON.stringify({ width: 200, height: 200 }));
 
+    window.addEventListener('close', () => {
+      console.log('parent closed');
+      childWindow.postMessage(JSON.stringify({ type: 'close' }));
+    })
+
     let isFold = false;
 
     const $box = document.querySelector('.box');
     $box.addEventListener('click', () => {
-      // console.log('click parent')
-      // window.external.setWindowPass(false);
-      // window.external.setWindowPriority(2);
+      console.log('click parent')
+      window.external.setWindowPass(true);
+      window.external.setWindowPriority(2);
 
       // setTimeout(() => {
       //   childWindow.close();

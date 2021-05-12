@@ -13,6 +13,13 @@ exports.benchmark = {
   `,
   run() {
 
+    setInterval(() => {
+      console.log(typeof window.opener, !!window.opener)
+      // if (!window.opener) {
+      //   window.close();
+      // }
+    }, 1000);
+
     const MAX_WIDTH = screen.width || 1280;
     const MAX_HEIGHT = screen.height || 720;
 
@@ -80,6 +87,12 @@ exports.benchmark = {
     window.addEventListener('message', (e) => {
       const { data, source } = e;
       let dataObj = JSON.parse(data);
+
+      if (dataObj.type === 'close') {
+        console.log('receive parent closed, ready to close child')
+        // window.close();
+        // return;
+      }
 
       panelSize = { width: dataObj.width, height: dataObj.height };
     });
