@@ -20,5 +20,5 @@ setTimeout(() => {
   let startTime = Date.now();
   benchmark.run()
   console.log('end:', Date.now() - startTime);
-  // document.getElementById('app').style.backgroundColor = 'green';
+  document.getElementById('app').style.backgroundColor = 'green';
 }, 2000);

@@ -9,18 +9,18 @@ exports.benchmark = {
   `,
   // html: ``,
   // html: `
-  //   <audio class="audio" src="http://10.43.42.84:8000/8169.ogg" autoplay="true" />
+  //   <audio class="audio" src="http://10.43.29.233:8000/8169.ogg" autoplay="true" />
   // `,
   // html: `
-  //   <audio class="audio" src="http://10.43.42.84:8000/8169.ogg" autoplay="true" loop="true" />
-  // `,
-  // html: `
-  //   <audio class="audio" src="http://10.43.42.84:8000/houlai.ogg" autoplay="true" />
-  // html: `
-  //   <audio class="audio" src="http://10.43.42.84:8000/houlai.ogg" autoplay="true" loop="true" />
+  //   <audio class="audio" src="http://10.43.29.233:8000/8169.ogg" autoplay="true" loop="true" />
   // `,
   html: `
+    <audio class="audio" src="http://10.43.29.233:8000/houlai.ogg" autoplay="true" />
   `,
+  //   <audio class="audio" src="http://10.43.29.233:8000/houlai.ogg" autoplay="true" loop="true" />
+  // `,
+  // html: `
+  // `,
   run() {
     // let count = 0;
     // const $audio = document.querySelector('.audio');
@@ -32,13 +32,13 @@ exports.benchmark = {
 
     //   // if (count === 1) {
     //   //   $audio.stop();
-    //   //   $audio.setAttribute('src', 'http://10.43.42.84:8000/mayday.ogg')
-    //   //   $audio.src = 'http://10.43.42.84:8000/mayday.ogg'
+    //   //   $audio.setAttribute('src', 'http://10.43.29.233:8000/mayday.ogg')
+    //   //   $audio.src = 'http://10.43.29.233:8000/mayday.ogg'
     //   //   $audio.play();
     //   // } else if (count === 2) {
     //   //   $audio.stop();
-    //   //   $audio.setAttribute('src', 'http://10.43.42.84:8000/houlai.ogg')
-    //   //   $audio.src = 'http://10.43.42.84:8000/houlai.ogg'
+    //   //   $audio.setAttribute('src', 'http://10.43.29.233:8000/houlai.ogg')
+    //   //   $audio.src = 'http://10.43.29.233:8000/houlai.ogg'
     //   //   $audio.play();
     //   // }
     // })

@@ -14,10 +14,9 @@ exports.benchmark = {
   run() {
 
     setInterval(() => {
-      console.log(typeof window.opener, !!window.opener)
-      // if (!window.opener) {
-      //   window.close();
-      // }
+      if (!window.opener) {
+        window.close();
+      }
     }, 1000);
 
     const MAX_WIDTH = screen.width || 1280;
