@@ -12,6 +12,7 @@ exports.benchmark = {
     <div class="container1"></box>
   `,
   run() {
+    window.moveTo(0, 0);
     window.resizeTo(screen.width, screen.height);
     document.querySelector('.container1').style.width = screen.width;
     document.querySelector('.container1').style.height = screen.height;
