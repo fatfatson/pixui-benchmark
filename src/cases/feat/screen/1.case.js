@@ -2,18 +2,18 @@ const helper = require('@/lib/helper')
 
 exports.benchmark = {
   style: `
-    .container {
+    .container1 {
       width: 100%;
       hegiht: 100%;
       background-color: red;
     }
   `,
   html: `
-    <div class="container"></box>
+    <div class="container1"></box>
   `,
   run() {
     window.resizeTo(screen.width, screen.height);
-    document.querySelector('container').width = screen.width;
-    document.querySelector('container').height = screen.height;
+    document.querySelector('.container1').style.width = screen.width;
+    document.querySelector('.container1').style.height = screen.height;
   },
 }
