@@ -26,6 +26,8 @@ async function main() {
     const htmlTargetDir = pathlib.dirname(htmlTarget);
     mkdirp.sync(htmlTargetDir)
 
+    fs.writeFileSync(htmlTarget.replace(/\.html$/, '.web.html'), html);
+
     const pfbsHtml_2_0 = await pfbsCompile(html)
 
     fs.writeFileSync(htmlTarget, pfbsHtml_2_0, 'binary')
@@ -33,6 +35,10 @@ async function main() {
     const pfbsHtml_3_0 = await pfbsCompile(html, {version: '3.0'})
 
     fs.writeFileSync(htmlTarget.replace(/\.html$/, '.3_0.html'), pfbsHtml_3_0, 'binary')
+
+    const pfbsHtml_4_0 = await pfbsCompile(html, {version: '4.0'})
+
+    fs.writeFileSync(htmlTarget.replace(/\.html$/, '.4_0.html'), pfbsHtml_4_0, 'binary')
   }
 }
 
