@@ -7,11 +7,9 @@ const rimraf = require('rimraf');
 const fs = require('fs');
 const { compileCaseToBundleHtml, pfbsCompile, projectRoot } = require('@/lib/compile');
 
-
 const srcDir = pathlib.join(projectRoot, 'src');
 const distDir = pathlib.join(projectRoot, 'dist');
 rimraf.sync(distDir);
-
 
 async function main() {
   // 所有用例
@@ -42,5 +40,3 @@ async function main() {
 }
 
 main();
-
-

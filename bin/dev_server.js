@@ -6,7 +6,6 @@ const pahtlib = require('path');
 const { compileCaseToBundleHtml, pfbsCompile } = require('@/lib/compile');
 const os = require('os');
 
-
 const app = express();
 
 // 免得报错
@@ -36,7 +35,6 @@ app.get('*', async (req, res, next) => {
 
   const relatedJs = pahtlib.join(__dirname, '../src/cases/', reqPathname).replace(/.html$/, '.case.js');
 
-
   if (!fs.existsSync(relatedJs) || fs.statSync(relatedJs).isDirectory()) {
     return res.send('not found');
   }
@@ -54,7 +52,6 @@ app.get('*', async (req, res, next) => {
     res.send(htmlContent);
   }
 });
-
 
 function getAllAddress() {
   const ifaces = os.networkInterfaces();
