@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -9,8 +9,7 @@ exports.benchmark = {
   run() {
     const $app = document.getElementById('app');
     for (let i = 0; i < 5000; i++) {
-      
       $app.appendChild(document.createElement('div'));
     }
   },
-}
+};

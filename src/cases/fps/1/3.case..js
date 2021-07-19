@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -8,10 +8,10 @@ exports.benchmark = {
   `,
   run() {
     /*  insertBefore div 10000次 */
-    let $div = document.createElement('div');
+    const $div = document.createElement('div');
 
     for (let i = 0; i < 10000; i++) {
-      $app.insertBefore($div);
+      // $app.insertBefore($div);
     }
   },
-}
+};

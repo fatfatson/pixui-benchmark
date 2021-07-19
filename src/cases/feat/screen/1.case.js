@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -17,4 +17,4 @@ exports.benchmark = {
     document.querySelector('.container1').style.width = screen.width;
     document.querySelector('.container1').style.height = screen.height;
   },
-}
+};

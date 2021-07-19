@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -9,15 +9,15 @@ exports.benchmark = {
   run() {
     const $app = document.getElementById('app');
 
-    $app.style.justifyContent = 'flex-start'
-    $app.style.alignItems = 'flex-start'
+    $app.style.justifyContent = 'flex-start';
+    $app.style.alignItems = 'flex-start';
 
     /* text 带文字 * 4000字（换行）） */
-    let $div = document.createElement('text');
+    const $div = document.createElement('text');
     $div.className = 'wrap';
-    let $textnode = document.createTextNode(helper.genText(4000));
+    const $textnode = document.createTextNode(helper.genText(4000));
     $div.appendChild($textnode);
 
     $app.appendChild($div);
   },
-}
+};

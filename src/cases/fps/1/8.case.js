@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -11,7 +11,7 @@ exports.benchmark = {
     const $app = document.getElementById('app');
     const repeatCount = 400;
 
-    let $div = document.createElement('div');
+    const $div = document.createElement('div');
 
     helper.runTimer(() => {
       for (let i = 0; i < repeatCount; i++) {
@@ -19,4 +19,4 @@ exports.benchmark = {
       }
     }, 16);
   },
-}
+};

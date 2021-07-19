@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -12,7 +12,6 @@ exports.benchmark = {
     <div class="transparent_box" draggble="true"></box>
   `,
   run() {
-
     setInterval(() => {
       if (!window.opener) {
         window.close();
@@ -49,7 +48,7 @@ exports.benchmark = {
 
       window.moveTo(safeX, safeY);
 
-      window.opener.postMessage(JSON.stringify({ x: safeX, y: safeY }))
+      window.opener.postMessage(JSON.stringify({ x: safeX, y: safeY }));
     };
 
     const dragStartHandler = (e) => {
@@ -78,17 +77,17 @@ exports.benchmark = {
     $box.addEventListener('drag', dragHandler);
     $box.addEventListener('dragend', dragEndHandler);
     $box.addEventListener('click', () => {
-      console.log('click child')
+      console.log('click child');
       window.external.setWindowPriority(2);
       window.opener.postMessage(JSON.stringify({ type: 'toggle' }));
-    })
+    });
 
     window.addEventListener('message', (e) => {
       const { data, source } = e;
-      let dataObj = JSON.parse(data);
+      const dataObj = JSON.parse(data);
 
       if (dataObj.type === 'close') {
-        console.log('receive parent closed, ready to close child')
+        console.log('receive parent closed, ready to close child');
         // window.close();
         // return;
       }
@@ -96,4 +95,4 @@ exports.benchmark = {
       panelSize = { width: dataObj.width, height: dataObj.height };
     });
   },
-}
+};

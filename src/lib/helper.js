@@ -1,5 +1,3 @@
-
-
 function genText(length = 0) {
   let text = '';
 
@@ -11,9 +9,9 @@ function genText(length = 0) {
 }
 exports.genText = genText;
 
-function getRandomChinese(){ 
-  //生成随机汉字
-  return String.fromCodePoint(Math.round(Math.random() * 20901) + 19968)
+function getRandomChinese() {
+  // 生成随机汉字
+  return String.fromCodePoint(Math.round(Math.random() * 20901) + 19968);
 }
 
 function genChinese(length = 0) {
@@ -25,18 +23,18 @@ function genChinese(length = 0) {
 
   return text;
 }
-exports.genChinese = genChinese
-
+exports.genChinese = genChinese;
 
 let startTime = 0;
 function runTimer(cb, time, isInfinity = true) {
-  if (!isInfinity && startTime && (Date.now() - startTime >= 60000 * 4)) {
+  if (!isInfinity && startTime && Date.now() - startTime >= 60000 * 4) {
     return;
-  } else if (!startTime) {
-    startTime = Date.now()
+  }
+  if (!startTime) {
+    startTime = Date.now();
   }
 
-  let timer = setTimeout(() => {
+  const timer = setTimeout(() => {
     cb(() => clearTimeout(timer));
 
     runTimer(cb, time, isInfinity);

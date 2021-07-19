@@ -1,4 +1,4 @@
-import {benchmark} from '{{{benchmark_case}}}'
+import { benchmark } from '{{{benchmark_case}}}';
 
 const autoGc = (duration = 160) => {
   if (globalThis.std?.gc) {
@@ -15,10 +15,9 @@ const autoGc = (duration = 160) => {
 // window.moveTo(100, 100);
 // window.resizeTo(400, 400);
 
-
 setTimeout(() => {
-  let startTime = Date.now();
-  benchmark.run()
+  const startTime = Date.now();
+  benchmark.run();
   console.log('end:', Date.now() - startTime);
   document.getElementById('app').style.backgroundColor = 'green';
 }, 2000);

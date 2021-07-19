@@ -1,10 +1,10 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
 
   `,
-  html: ``,
+  html: '',
   run() {
     /*
       1. 在 display:none 节点中添加大量可视节点
@@ -19,15 +19,14 @@ exports.benchmark = {
 
     setTimeout(() => {
       for (let i = 0; i < 100; i++) {
-        let $div = document.createElement('div');
+        const $div = document.createElement('div');
         $div.className = 'box_color';
-        $container.appendChild($div)
+        $container.appendChild($div);
       }
     }, 2000);
-
 
     setTimeout(() => {
       $container.style.display = 'flex';
     }, 10000);
   },
-}
+};

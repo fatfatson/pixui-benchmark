@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -11,22 +11,21 @@ exports.benchmark = {
     const $app = document.getElementById('app');
     const repeatCount = 20;
 
-    let doms = [];
+    const doms = [];
 
     for (let i = 0; i < repeatCount; i++) {
-      let $div = document.createElement('div');
-      let $textnode = document.createTextNode('' + Math.random());
+      const $div = document.createElement('div');
+      const $textnode = document.createTextNode(`${Math.random()}`);
       $div.appendChild($textnode);
       $app.appendChild($div);
 
       doms.push($div);
     }
 
-
     helper.runTimer(() => {
       for (let i = 0; i < repeatCount; i++) {
-        doms[i].childNodes[0].data = '' + Math.random();
+        doms[i].childNodes[0].data = `${Math.random()}`;
       }
     }, 16);
   },
-}
+};

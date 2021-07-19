@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -24,12 +24,10 @@ exports.benchmark = {
   run() {
     // let count = 0;
     // const $audio = document.querySelector('.audio');
-
     // $audio.play();
     // $audio.addEventListener('ended', () => {
     //   console.log('addEventListener audio ended')
     //   count++;
-
     //   // if (count === 1) {
     //   //   $audio.stop();
     //   //   $audio.setAttribute('src', 'http://10.43.29.233:8000/mayday.ogg')
@@ -47,15 +45,12 @@ exports.benchmark = {
     // }
     // console.log('$audio.currentTime', $audio.currentTime);
     // console.log('$audio.canPlayType', JSON.stringify($audio.canPlayType()));
-
     // setTimeout(() => {
     //   $audio.pause();
     // }, 3000);
-
     // setTimeout(() => {
     //   $audio.play();
     // }, 6000);
-
     // setTimeout(() => {
     //   console.log('$audio.currentTime', $audio.currentTime);
     //   $audio.currentTime = 1;
@@ -67,4 +62,4 @@ exports.benchmark = {
     //   $audio.resume();
     // }, 4000);
   },
-}
+};

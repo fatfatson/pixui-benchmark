@@ -1,4 +1,4 @@
-const { runTimer, genFragment } = require('@/lib/helper')
+const { runTimer, genFragment } = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -9,9 +9,8 @@ exports.benchmark = {
   run() {
     const $app = document.getElementById('app');
 
-
     /* 100个div+text，display 每0.1s自动隐藏展开 */
-    let $container = genFragment();
+    const $container = genFragment();
     $app.appendChild($container);
     let isShow = true;
 
@@ -19,7 +18,7 @@ exports.benchmark = {
       runTimer(() => {
         $container.style.display = isShow ? 'none' : 'flex';
         isShow = !isShow;
-      }, 100)
+      }, 100);
     }, 10000);
   },
-}
+};

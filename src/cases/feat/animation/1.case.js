@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -36,7 +36,7 @@ exports.benchmark = {
     const $wrapper = document.querySelector('.wrapper');
     const $panel2 = document.querySelector('.panel_2');
     const $btnWrapper = document.querySelector('.btn_wrapper');
-    let $btn = document.createElement('div');
+    const $btn = document.createElement('div');
     $btnWrapper.appendChild($btn);
 
     let isShowPanel = false;
@@ -47,16 +47,16 @@ exports.benchmark = {
       isShowBtn = !isShowBtn;
 
       if (isShowPanel) {
-        $panel2.className = 'panel panel_2 show'
+        $panel2.className = 'panel panel_2 show';
       } else {
-        $panel2.className = 'panel panel_2'
+        $panel2.className = 'panel panel_2';
       }
-        
+
       if (isShowBtn) {
         $btnWrapper.appendChild($btn);
       } else {
         $btnWrapper.removeChild($btn);
       }
-    })
+    });
   },
-}
+};

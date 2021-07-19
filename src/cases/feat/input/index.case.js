@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -22,14 +22,12 @@ exports.benchmark = {
   `,
   run() {
     const $input = document.querySelector('.input');
-    $input.placeholder = 'what'
+    $input.placeholder = 'what';
 
-    $input.value = 'what 你在干嘛'
+    $input.value = 'what 你在干嘛';
 
     setTimeout(() => {
-      $input.value = $input.value + '1'
+      $input.value = `${$input.value}1`;
     }, 3000);
-
-    
   },
-}
+};

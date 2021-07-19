@@ -1,5 +1,4 @@
-const { runTimer, genFragment } = require('@/lib/helper')
-
+const { runTimer, genFragment } = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -9,7 +8,6 @@ exports.benchmark = {
   `,
   run() {
     const $app = document.getElementById('app');
-
 
     /* 100个div+text，add/remove 每0.1s自动隐藏展开 */
     let $container = genFragment();
@@ -27,7 +25,7 @@ exports.benchmark = {
         }
 
         isShow = !isShow;
-      }, 100)
+      }, 100);
     }, 10000);
   },
-}
+};

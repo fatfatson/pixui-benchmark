@@ -1,0 +1,10 @@
+dist
+public
+node_modules
+
+# less 文件不编译，会报 Parsing error: Unexpected character '@'
+*.less
+
+**/webpack.config.js
+**/package.json
+**/package-lock.json

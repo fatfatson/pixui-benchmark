@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -37,8 +37,7 @@ exports.benchmark = {
     /* 呼吸动画 */
     const $app = document.getElementById('app');
     for (let i = 0; i < 1000; i++) {
-      
       $app.appendChild(document.createElement('div'));
     }
   },
-}
+};

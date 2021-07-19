@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -10,11 +10,11 @@ exports.benchmark = {
     const $app = document.getElementById('app');
 
     /* text 带文字 * 4000字（不换行）） */
-    let $div = document.createElement('text');
+    const $div = document.createElement('text');
     $div.className = 'nowrap';
-    let $textnode = document.createTextNode(helper.genText(4000));
+    const $textnode = document.createTextNode(helper.genText(4000));
     $div.appendChild($textnode);
 
     $app.appendChild($div);
   },
-}
+};

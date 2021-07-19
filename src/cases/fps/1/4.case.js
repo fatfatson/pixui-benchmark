@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -8,12 +8,12 @@ exports.benchmark = {
   `,
   run() {
     /* 4. insertBefore div 10000次 */
-    let $div = document.createElement('div');
+    const $div = document.createElement('div');
     $div.appendChild(document.createTextNode('1'));
-    $app.appendChild($div);
+    // $app.appendChild($div);
 
     for (let i = 0; i < 10000; i++) {
       $div.childNodes[0].data = `${i}`;
     }
   },
-}
+};

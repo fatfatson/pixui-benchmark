@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -36,25 +36,25 @@ exports.benchmark = {
     window.addEventListener('close', () => {
       console.log('parent closed');
       childWindow.postMessage(JSON.stringify({ type: 'close' }));
-    })
+    });
 
     let isFold = false;
 
     const $box = document.querySelector('.box');
     $box.addEventListener('click', () => {
-      console.log('click parent')
+      console.log('click parent');
       window.external.setWindowPass(true);
       window.external.setWindowPriority(2);
 
       // setTimeout(() => {
       //   childWindow.close();
-        
+
       // }, 1000);
-    })
+    });
 
     window.addEventListener('message', (e) => {
       const { data, source } = e;
-      let dataObj = JSON.parse(data);
+      const dataObj = JSON.parse(data);
 
       if (dataObj.type === 'toggle') {
         if (isFold) {
@@ -72,4 +72,4 @@ exports.benchmark = {
       window.moveTo(dataObj.x, dataObj.y);
     });
   },
-}
+};

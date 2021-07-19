@@ -1,14 +1,14 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
-  style: ``,
-  html: ``,
+  style: '',
+  html: '',
   run() {
     setInterval(() => {
-      let startTime = Date.now();
+      const startTime = Date.now();
       while (Date.now() - startTime < 8) {
         console.log('1');
       }
     }, 16);
   },
-}
+};

@@ -1,4 +1,4 @@
-const helper = require('@/lib/helper')
+const helper = require('@/lib/helper');
 
 exports.benchmark = {
   style: `
@@ -8,7 +8,6 @@ exports.benchmark = {
   `,
   run() {
     const $app = document.getElementById('app');
-
 
     /* 1000个 宽高100*100 透明 div */
     let $div = document.createElement('div');
@@ -22,4 +21,4 @@ exports.benchmark = {
       $parent = $div;
     }
   },
-}
+};
