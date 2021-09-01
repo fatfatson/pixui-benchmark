@@ -15,9 +15,9 @@ const autoGc = (duration = 160) => {
 // window.moveTo(100, 100);
 // window.resizeTo(400, 400);
 
-setTimeout(() => {
-  const startTime = Date.now();
-  benchmark.run();
-  console.log('end:', Date.now() - startTime);
-  document.getElementById('app').style.backgroundColor = 'green';
-}, 2000);
+// setTimeout(() => {
+//   const startTime = Date.now();
+benchmark.run();
+//   console.log('end:', Date.now() - startTime);
+//   document.getElementById('app').style.backgroundColor = 'green';
+// }, 2000);
