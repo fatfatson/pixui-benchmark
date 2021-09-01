@@ -25,17 +25,11 @@ async function main() {
 
     fs.writeFileSync(htmlTarget.replace(/\.html$/, '.web.html'), html);
 
-    const pfbsHtml2 = await pfbsCompile(html);
+    const pfbsHtml4 = await pfbsCompile(html, { version: '0.4' });
+    fs.writeFileSync(htmlTarget, pfbsHtml4, 'binary');
 
-    fs.writeFileSync(htmlTarget, pfbsHtml2, 'binary');
-
-    const pfbsHtml3 = await pfbsCompile(html, { version: '3.0' });
-
-    fs.writeFileSync(htmlTarget.replace(/\.html$/, '.3_0.html'), pfbsHtml3, 'binary');
-
-    const pfbsHtml4 = await pfbsCompile(html, { version: '4.0' });
-
-    fs.writeFileSync(htmlTarget.replace(/\.html$/, '.4_0.html'), pfbsHtml4, 'binary');
+    const pfbsHtml3 = await pfbsCompile(html, { version: '0.3' });
+    fs.writeFileSync(htmlTarget.replace(/\.html$/, '.0_3.html'), pfbsHtml3, 'binary');
   }
 }
 
