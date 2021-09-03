@@ -1,5 +1,7 @@
 const helper = require('@/lib/helper');
 
+console.log(12312312);
+
 exports.benchmark = {
   style: `
     * {
@@ -14,7 +16,11 @@ exports.benchmark = {
       border-radius: 16px;
       transition: background-color 0.25s ease-out;
     }
-    
+
+    .panel-transparent {
+      background-color: transparent;
+    }
+
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -46,8 +52,12 @@ exports.benchmark = {
       border-radius: 16px;
       padding: 0 12px;
       background-color: #2C2C2C;
-      transition: all 0.5s ease-out;
+      transition: height 0.5s ease-out;
       overflow: hidden;
+    }
+
+    .audience-panel-tall {
+      height: 352px;
     }
 
     .audience-text {
@@ -153,7 +163,8 @@ exports.benchmark = {
         // 锁定
 
         // 背景隐藏 250ms
-        $panel.style.backgroundColor = 'transparent';
+        // $panel.style.backgroundColor = 'transparent';
+        $panel.className = 'panel panel-transparent';
         $audiencePanel.style.backgroundColor = 'transparent';
         $commentPanel.style.overflow = 'hidden';
         $commentPanel.scrollTop = $commentPanel.scrollHeight;
@@ -179,7 +190,9 @@ exports.benchmark = {
         $commentPanel.style.overflow = 'scroll';
 
         setTimeout(() => {
-          $panel.style.backgroundColor = 'rgba(0,0,0,0.5)';
+          // $panel.style.backgroundColor = 'rgba(0,0,0,0.5)';
+          $panel.className = 'panel';
+
           $audiencePanel.style.backgroundColor = '#2c2c2c';
         }, 750);
 
@@ -198,9 +211,13 @@ exports.benchmark = {
 
       if (!hasAudienceExpanded) {
         // 展开
-        $audiencePanel.style.height = '352px';
+        // $audiencePanel.classList.add('audience-panel-tall');
+        $audiencePanel.className = 'audience-panel audience-panel-tall';
+        // $audiencePanel.setAttribute('class', 'audience-panel audience-panel-tall');
       } else {
-        $audiencePanel.style.height = '48px';
+        // $audiencePanel.classList.remove('audience-panel-tall');
+        $audiencePanel.className = 'audience-panel';
+        // $audiencePanel.setAttribute('class', 'audience-panel');
       }
 
       hasAudienceExpanded = !hasAudienceExpanded;
