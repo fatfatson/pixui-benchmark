@@ -5,7 +5,7 @@ exports.benchmark = {
     .box {
       width: 400px;
       height: 400px;
-      background-color: red;
+      background-color: #eee;
       display: flex;
       flex-direction: column;
     }
@@ -16,6 +16,9 @@ exports.benchmark = {
       <div class="text2">[dragstart]clientX: 0  clientY: 0</div>
       <div class="text3">[drag]clientX: 0  clientY: 0</div>
       <div class="text4">[dragend]clientX: 0  clientY: 0</div>
+      <div class="text5">[mousedown]clientX: 0  clientY: 0</div>
+      <div class="text6">[mousemove]clientX: 0  clientY: 0</div>
+      <div class="text7">[mouseup]clientX: 0  clientY: 0</div>
     <div>
   `,
   run() {
@@ -26,6 +29,9 @@ exports.benchmark = {
     const dText2 = document.querySelector('.text2');
     const dText3 = document.querySelector('.text3');
     const dText4 = document.querySelector('.text4');
+    const dText5 = document.querySelector('.text5');
+    const dText6 = document.querySelector('.text6');
+    const dText7 = document.querySelector('.text7');
     const dBox = document.querySelector('.box');
 
     dText1.childNodes[0].data = `screen.width: ${screen.width} screen.height: ${screen.height}`;
@@ -112,6 +118,24 @@ exports.benchmark = {
       moveTo(x, y);
     };
 
+    const mousedownHandler = (e) => {
+      dText5.childNodes[0].data = `[mousedown]clientX: ${e.touches[0].clientX} clientY: ${e.touches[0].clientY}`;
+
+      console.log('mousedown', e.touches[0].clientX, e.touches[0].clientY);
+    };
+
+    const mousemoveHandler = (e) => {
+      dText6.childNodes[0].data = `[mousemove]clientX: ${e.touches[0].clientX} clientY: ${e.touches[0].clientY}`;
+
+      console.log('mousemove', e.touches[0].clientX, e.touches[0].clientY);
+    };
+
+    const mouseupHandler = (e) => {
+      dText7.childNodes[0].data = `[mouseup]clientX: ${e.changedTouches[0].clientX} clientY: ${e.changedTouches[0].clientY}`;
+
+      console.log('mouseup', e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+    };
+
     let isFold = false;
     const clickHandler = () => {
       isFold = !isFold;
@@ -130,6 +154,9 @@ exports.benchmark = {
     dBox.addEventListener('dragstart', dragStartHandler);
     dBox.addEventListener('drag', dragHandler);
     dBox.addEventListener('dragend', dragEndHandler);
+    dBox.addEventListener('mousedown', mousedownHandler);
+    dBox.addEventListener('mousemove', mousemoveHandler);
+    dBox.addEventListener('mouseup', mouseupHandler);
     dBox.addEventListener('click', clickHandler);
   },
 };
