@@ -28,6 +28,11 @@ exports.benchmark = {
       border: 4px solid red;
       border-radius: 52px;
     }
+    .rect_wrapper {
+      width: 50px;
+      height: 50px;
+      border: 4px solid red;
+    }
 
     .rect_box {
       width: 100px;
@@ -51,6 +56,10 @@ exports.benchmark = {
     </div>
     <div class="title">圆形外框 + 父元素裁剪 + 矩形色块</div>
     <div class="circle_wrapper" style="overflow: hidden">
+      <div class="rect_box"></div>
+    </div>
+    <div class="title">矩形外框 + 父元素裁剪 + 矩形色块</div>
+    <div class="rect_wrapper" style="overflow: hidden">
       <div class="rect_box"></div>
     </div>
     <div class="title">圆形外框 + 父元素不裁剪 + 矩形色块</div>
