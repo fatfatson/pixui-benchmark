@@ -14,7 +14,11 @@ exports.benchmark = {
       border-radius: 16px;
       transition: background-color 0.25s ease-out;
     }
-    
+
+    .panel-transparent {
+      background-color: transparent;
+    }
+
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -24,7 +28,11 @@ exports.benchmark = {
       width: 48px;
       height: 260px;
       align-items: center;
-      transition: all 0.5s ease-out;
+      transition: transform 0.5s ease-out;
+    }
+
+    .sidebar-move {
+      transform: translateX(48px);
     }
 
     .icon {
@@ -33,7 +41,11 @@ exports.benchmark = {
       background-color: #000;
       margin-top: 16px;
       border-radius: 16px;
-      transition: all 0.5s ease-out;
+      transition: background-color 0.5s ease-out;
+    }
+
+    .icon-red {
+      background-color: red;
     }
 
     .audience-panel {
@@ -46,8 +58,20 @@ exports.benchmark = {
       border-radius: 16px;
       padding: 0 12px;
       background-color: #2C2C2C;
-      transition: all 0.5s ease-out;
+      transition: background-color 0.5s ease-out, transform 0.5s ease-out, height 0.5s ease-out;
       overflow: hidden;
+    }
+
+    .audience-panel-transparent {
+      background-color: transparent;
+    }
+
+    .audience-panel-move {
+      transform: translateX(48px);
+    }
+
+    .audience-panel-tall {
+      height: 352px;
     }
 
     .audience-text {
@@ -77,7 +101,15 @@ exports.benchmark = {
       height: 292px;
       width: 348px;
       overflow: scroll;
-      transition: all 0.5s ease-out;
+      transition: overflow 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .comment-panel-hidden {
+      overflow: hidden;
+    }
+
+    .comment-panel-move {
+      transform: translateY(-200px);
     }
 
     .comment-text {
@@ -153,18 +185,26 @@ exports.benchmark = {
         // 锁定
 
         // 背景隐藏 250ms
-        $panel.style.backgroundColor = 'transparent';
-        $audiencePanel.style.backgroundColor = 'transparent';
-        $commentPanel.style.overflow = 'hidden';
+        // $panel.style.backgroundColor = 'transparent';
+        $panel.className = 'panel panel-transparent';
+        // $audiencePanel.style.backgroundColor = 'transparent';
+        $audiencePanel.className = 'audience-panel audience-panel-transparent';
+        // $commentPanel.style.overflow = 'hidden';
+        $commentPanel.className = 'comment-panel comment-panel-hidden';
         $commentPanel.scrollTop = $commentPanel.scrollHeight;
-        $audiencePanel.style.height = '48px';
 
         setTimeout(() => {
           // 移动面板
-          $audiencePanel.style.transform = 'translateX(48px)';
-          $sidebar.style.transform = 'translateX(48px)';
-          $lock.style.backgroundColor = 'red';
-          $commentPanel.style.transform = 'translateY(-200px)';
+          // $audiencePanel.style.transform = 'translateX(48px)';
+          $audiencePanel.className =            'audience-panel audience-panel-transparent audience-panel-move';
+
+          // $sidebar.style.transform = 'translateX(48px)';
+          $sidebar.className = 'sidebar sidebar-move';
+          // $lock.style.backgroundColor = 'red';
+          $lock.className = 'icon icon-red';
+
+          // $commentPanel.style.transform = 'translateY(-200px)';
+          $commentPanel.className = 'comment-panel comment-panel-hidden comment-panel-move';
         }, 500);
 
         setTimeout(() => {
@@ -172,15 +212,25 @@ exports.benchmark = {
         }, 1000);
       } else {
         // 移动面板
-        $audiencePanel.style.transform = 'translateX(0px)';
-        $sidebar.style.transform = 'translateX(0px)';
-        $lock.style.backgroundColor = '#000000';
-        $commentPanel.style.transform = 'translateY(0px)';
-        $commentPanel.style.overflow = 'scroll';
+        // $audiencePanel.style.transform = 'translateX(0px)';
+        $audiencePanel.className = 'audience-panel audience-panel-transparent';
+
+        // $sidebar.style.transform = 'translateX(0px)';
+        $sidebar.className = 'sidebar';
+
+        // $lock.style.backgroundColor = '#000000';
+        $lock.className = 'icon';
+
+        // $commentPanel.style.transform = 'translateY(0px)';
+        // $commentPanel.style.overflow = 'scroll';
+        $commentPanel.className = 'comment-panel';
 
         setTimeout(() => {
-          $panel.style.backgroundColor = 'rgba(0,0,0,0.5)';
-          $audiencePanel.style.backgroundColor = '#2c2c2c';
+          // $audiencePanel.style.backgroundColor = '#2c2c2c';
+          $audiencePanel.className = 'audience-panel';
+
+          // $panel.style.backgroundColor = 'rgba(0,0,0,0.5)';
+          $panel.className = 'panel';
         }, 750);
 
         setTimeout(() => {
@@ -198,9 +248,15 @@ exports.benchmark = {
 
       if (!hasAudienceExpanded) {
         // 展开
-        $audiencePanel.style.height = '352px';
+        // $audiencePanel.classList.add('audience-panel-tall');
+        $audiencePanel.className = 'audience-panel audience-panel-tall';
+
+        // $audiencePanel.setAttribute('class', 'audience-panel audience-panel-tall');
       } else {
-        $audiencePanel.style.height = '48px';
+        // $audiencePanel.classList.remove('audience-panel-tall');
+        $audiencePanel.className = 'audience-panel';
+
+        // $audiencePanel.setAttribute('class', 'audience-panel');
       }
 
       hasAudienceExpanded = !hasAudienceExpanded;
