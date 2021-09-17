@@ -32,10 +32,12 @@ exports.benchmark = {
     childWindow.moveTo(100, 100);
 
     childWindow.postMessage(JSON.stringify({ width: 200, height: 200 }));
+    window.external.setWindowPriority(1);
 
     window.addEventListener('close', () => {
       console.log('parent closed');
-      childWindow.postMessage(JSON.stringify({ type: 'close' }));
+      childWindow.close();
+      // childWindow.postMessage(JSON.stringify({ type: 'close' }));
     });
 
     let isFold = false;
@@ -44,7 +46,7 @@ exports.benchmark = {
     $box.addEventListener('click', () => {
       console.log('click parent');
       window.external.setWindowPass(true);
-      window.external.setWindowPriority(2);
+      window.external.setWindowPriority(1);
 
       // setTimeout(() => {
       //   childWindow.close();
@@ -60,9 +62,13 @@ exports.benchmark = {
         if (isFold) {
           $box.style.width = '200px';
           $box.style.height = '200px';
+          window.external.setWindowPriority(1);
+          window.external.setWindowPass(false);
         } else {
           $box.style.width = '100px';
           $box.style.height = '100px';
+          window.external.setWindowPriority(3);
+          window.external.setWindowPass(true);
         }
 
         isFold = !isFold;

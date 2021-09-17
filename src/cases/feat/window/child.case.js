@@ -36,6 +36,8 @@ exports.benchmark = {
       height: 0,
     };
 
+    window.external.setWindowPriority(2);
+
     /**
      * @description 移动页面窗口。
      **/
@@ -78,7 +80,7 @@ exports.benchmark = {
     $box.addEventListener('dragend', dragEndHandler);
     $box.addEventListener('click', () => {
       console.log('click child');
-      window.external.setWindowPriority(2);
+      // window.external.setWindowPriority(2);
       window.opener.postMessage(JSON.stringify({ type: 'toggle' }));
     });
 
@@ -88,8 +90,8 @@ exports.benchmark = {
 
       if (dataObj.type === 'close') {
         console.log('receive parent closed, ready to close child');
-        // window.close();
-        // return;
+        window.close();
+        return;
       }
 
       panelSize = { width: dataObj.width, height: dataObj.height };
